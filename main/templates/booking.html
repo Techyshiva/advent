@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'assets/css/booking.css' %}">
+  <div class="booking">
+        <h1>Booking Online Now</h1>
+        <p>Please fill out this form with the required information</p>
+        <form method="POST" action="{% url 'booking' %}">
+            {% csrf_token %}
+
+            <fieldset>
+                <label>First Name: *
+                    <input type="text" name="firstname" required>
+                </label>
+
+                <label>Last Name: *
+                    <input type="text" name="lastname" required>
+                </label>
+
+                <label>Email: *
+                    <input type="email" name="email" required>
+                </label>
+
+                <label>Phone Number: *
+                    <input type="text" name="phone" required>
+                </label>
+
+                <label>Check-in Date: *
+                    <input type="date" name="checkin" required>
+                </label>
+
+                <label>Check-out Date: *
+                    <input type="date" name="checkout" required>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <label>Accommodation Type: *
+                    <select name="accommodation" required>
+                        <option value="">Select One</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Self-Catered">Self-Catered</option>
+                        <option value="Hostel">Hostel</option>
+                        <option value="Guesthouse">Guesthouse</option>
+                    </select>
+                </label>
+
+                <label>Number of rooms:
+                    <input type="number" name="rooms" min="1">
+                </label>
+
+                <label>Room Type:</label>
+
+                <label>
+                    <input type="radio" name="room_type" value="Single"> Single Room
+                </label>
+
+                <label>
+                    <input type="radio" name="room_type" value="Double"> Double Room
+                </label>
+
+                <label>
+                    <input type="radio" name="room_type" value="Triple"> Triple Room
+                </label>
+
+                <label>
+                    <input type="radio" name="room_type" value="Quad"> Quad Bedroom
+                </label>
+
+                <label>Additional Requests:
+                    <textarea name="additional"></textarea>
+                </label>
+            </fieldset>
+
+            <input type="submit" value="Submit" class="submit-btn">
+        </form>
+    </div>
+{% endblock %}
